@@ -18,8 +18,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from .health import healthz, readyz
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/assets/", include("inventory.urls")),
+    path("healthz/", healthz, name="healthz"),
+    path("readyz/", readyz, name="readyz"),
 ]
 
