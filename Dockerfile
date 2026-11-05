@@ -11,6 +11,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+
+RUN DJANGO_SECRET_KEY=build-only-placeholder \
+    python manage.py collectstatic --noinput
+
+
 RUN useradd --create-home --uid 10001 appuser
 USER appuser
 
